@@ -23,6 +23,14 @@ class Vetor {
         }
         this._vetor = novoVetor
     }
+
+    retirarFinal(){
+        let novoVetor = [];
+        for (let i=0; i < this._vetor.length-1; i++){
+            novoVetor[novoVetor.length] = this._vetor[i];
+        }
+        this._vetor = novoVetor;
+    }
 }
 vetor = new Vetor()
 vetor.inserirInicio(0)
