@@ -27,6 +27,17 @@ class ListaSimples {
         atual = novoNo;
 
     }
+    gerarVetor(){
+        if(this.inicio == null)
+            return [];
+        let atual = this.inicio;
+        lista.push(atual.dado);
+        while (atual.proximo != null){
+            lista.push(atual.dado);
+            atual = atual.proximo;
+        }
+        return lista;
+    }
 }
 
 const lista = new ListaSimples();
