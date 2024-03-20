@@ -38,6 +38,11 @@ class ListaSimples {
         }
         return lista;
     }
+
+    retirarUltimoElemento(){
+        if (this.inicio == null)
+            return null;
+    }
 }
 
 const lista = new ListaSimples();
