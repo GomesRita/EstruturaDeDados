@@ -2,42 +2,47 @@ class Data{
     dia: any;
     mes: any;
     ano: any;
+    mes30dias: Array<number>
+    mes31dias: Array<number>
 
-    constructor(){}
-
-    //Valida a data nas operação por meio de dados do tipo Date e do tipo String
-    verificador_data(){ 
-        if (this.mes === 4 || 
-            this.mes === 6 || 
-            this.mes === 9 || 
-            this.mes === 11) {
-                if (this.dia >= 1 && this.dia <= 30){
-                    console.log('Data válida')
-                } else {
-                    console.log('Data inválida')
-                }
-            }
-    
-        if(this.mes === 1 || 
-            this.mes === 3 || 
-            this.mes === 5 || 
-            this.mes === 7 || 
-            this.mes === 8 ||
-            this.mes === 11||
-            this.mes === 12){
-                if (this.dia >= 1 && this.dia <= 31){
-                    console.log('Data válida')
-                } else {
-                    console.log('Data inválida')
-                }
-            }
+    constructor(date: Date){
+        this.dia = date.getDate()
+        this.mes = date.getMonth()
+        this.ano = date.getFullYear()
+        this.mes30dias = [4,6,9,11]
+        this.mes31dias = [1,3,5,7,8,10,12]
     }
-  
-    recebeData_Data(data: Date){
-        this.dia= data.getDate();
-        this.mes = data.getMonth() + 1;
-
-        this.verificador_data();
+    /*  -> A função recebe o objeto dataAtual
+        -> A função se o mês informado está contido no array 30 ou 31 dias
+        -> A função verifica se o número de dias informado corresponde ao tipo de mês
+    */
+    recebeData_Data(data: Data){
+       if(this.mes30dias.includes(data.mes)){
+            if(data.dia >= 1 && data.dia <= 30){
+                console.log('A data é válida')
+                return true
+            } else {
+                console.log('Esta data é inválida')
+            }
+       } if(this.mes31dias.includes(data.mes)){
+            if(data.dia >= 1 && data.dia <= 31){
+                console.log('A data é válida')
+                return true
+            } else {
+                console.log('Esta data é inválida')
+            }
+       }
+    }
+    /*  -> A função passa o valor de this.ano para inteiro
+        -> A função verifica se o valor é divisível por 4, não é divisível por 100 ou é divisível por 400
+    */
+    calcula_ano_bissexto(){
+        let ano = parseInt(this.ano)
+        if(ano % 4 === 0 && ano %100 !== 0 || (ano%400 === 0)){
+            console.log("este é um ano bissexto")
+        } else{
+            console.log('este não é um ano bissexto')
+        }
     }
 
     recebeData_String(data: String){
@@ -46,22 +51,21 @@ class Data{
        this.mes = parseInt(dataAtual[1])
        this.ano = parseInt(dataAtual[2])
 
-      this.verificador_data();
+       let novaData = new Date(this.ano, this.mes - 1, this.dia)
+       console.log(novaData)
+       console.log(dataAtual)
+
     }
 
-    calcula_ano_bissexto(ano: any){
-        this.ano = parseInt(ano)
-        if(this.ano % 4 === 0 && this.ano %100 !== 0 || (this.ano%400 === 0)){
-            console.log("este é um ano bissexto")
-        } else{
-            console.log('este não é um ano bissexto')
-        }
+    somaData(numero: number){
+        let somador = numero 
+        console.log(somador)
+
     }
+    
 }
 
-let dataAtual = new Data()
-dataAtual.recebeData_Data(new Date('2024-04-31'))
-let data2 = new Data()
-data2.recebeData_String("31/04/2023")
-let data3 = new Data()
-data3.calcula_ano_bissexto(2021)
+let dataAtual = new Data(new Date(2024,4,30))
+dataAtual.recebeData_Data(dataAtual) // Data inválida
+dataAtual.calcula_ano_bissexto()
+dataAtual.recebeData_String('22/06/2024')
