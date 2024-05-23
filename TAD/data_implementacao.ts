@@ -71,13 +71,16 @@ class Data{
         if(somador > 30){
             for(var i = somador; i > 30; i = i - 30 ){
                 this.mes = this.mes + 1
-                console.log('this.mes: ' + this.mes + ' data.mes: ' + data.mes)
                 somador = somador - 30
             } 
             if(this.mes30dias.includes(data.mes)){
                 let soma = somador + data.dia
                 if(soma > 30){
                     this.mes = this.mes + 1
+                    if(this.mes > 12){
+                        this.mes = this.mes - 12
+                        this.ano = this.ano + 1
+                    }
                     let somaFinal = soma - 30
                     this.dia = somaFinal
                     let DataNova = (this.ano, this.mes, this.mes, this.dia)
@@ -92,6 +95,10 @@ class Data{
                 let soma = somador + data.dia
                 if(soma > 31){
                     this.mes = this.mes + 1
+                    if(this.mes > 12){
+                        this.mes = this.mes - 12
+                        this.ano = this.ano + 1
+                    }
                     let somaFinal = soma - 31
                     this.dia = somaFinal
                     let DataNova = (this.ano, this.mes, this.mes, this.dia)
@@ -108,6 +115,10 @@ class Data{
                 let soma = somador + data.dia
                 if(soma > 30){
                     this.mes = this.mes + 1
+                    if(this.mes > 12){
+                        this.mes = this.mes - 12
+                        this.ano = this.ano + 1
+                    }
                     let somaFinal = soma - 30
                     this.dia = somaFinal
                     let DataNova = (this.ano, this.mes, this.mes, this.dia)
@@ -120,8 +131,13 @@ class Data{
             } 
             else if(this.mes31dias.includes(data.mes)){
                 let soma = somador + data.dia
+                console.log('this.mes: '+this.mes)
                 if(soma > 31){
                     this.mes = this.mes + 1
+                    if(this.mes > 12){
+                        this.mes = this.mes - 12
+                        this.ano = this.ano + 1
+                    }
                     let somaFinal = soma - 31
                     this.dia = somaFinal
                     let DataNova = (this.ano, this.mes, this.mes, this.dia)
