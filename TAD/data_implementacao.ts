@@ -14,6 +14,7 @@ class Data{
         -> A função se o mês informado está contido no array 30 ou 31 dias
         -> A função verifica se o número de dias informado corresponde ao tipo de mês
     */
+ 
     recebeData_Data(data: Data){
        if(this.mes30dias.includes(data.mes)){
             if(data.dia >= 1 && data.dia <= 30){
@@ -105,8 +106,61 @@ class Data{
             somar()
         }
     }
-}
 
+    subtraiData(numero: number, data: Data){
+        let subtraendo  = numero
+
+        const subtrairMesAno = () =>{
+            this.mes = this.mes - 1
+                if(this.mes < 1){
+                    this.mes = 12
+                    this.ano = this.ano - 1 
+                }
+        }
+
+        const subtrair = () =>{
+            if(subtraendo < data.dia){
+                this.dia = this.dia - subtraendo
+                console.log('Nova Data: ' + this.dia + '/' + this.mes + '/' + this.ano)
+            }
+            else if(subtraendo === data.dia){
+                subtrairMesAno()
+                if(this.mes30dias.includes(data.mes)){
+                    this.mes = 30
+                    console.log('Nova Data: ' + this.dia + '/' + this.mes + '/' + this.ano)
+                } else if(this.mes31dias.includes(data.mes)){
+                    this.mes = 31
+                    console.log('Nova Data: ' + this.dia + '/' + this.mes + '/' + this.ano)
+                }
+            }
+            else if(subtraendo > data.mes){
+                subtrairMesAno()
+                let result = subtraendo - this.mes
+                if(this.mes30dias.includes(data.mes)){
+                    this.mes = 30 - result
+                    console.log('Nova Data: ' + this.dia + '/' + this.mes + '/' + this.ano)
+                } else if(this.mes31dias.includes(data.mes)){
+                    this.mes = 31 - result
+                    console.log('Nova Data: ' + this.dia + '/' + this.mes + '/' + this.ano)
+                }
+            }
+        }
+
+        if(subtraendo > 30){
+            for(var i = subtraendo; i > 30; i = i - 30){
+                subtrairMesAno()
+                subtraendo = subtraendo - 30
+            }
+            subtrair()
+
+
+        } else if( subtraendo < 30){
+            subtrair()
+        }
+
+    }
+
+}
 
 
 
@@ -115,3 +169,5 @@ let dataAtual = new Data(30,11,2024)
 dataAtual.calcula_ano_bissexto()
 dataAtual.somaData(40, dataAtual)
 dataAtual.recebeData_String('24/05/2024')
+let hoje = new Data(25, 5, 2024)
+hoje.subtraiData(20, hoje)

@@ -62,3 +62,33 @@ Função somarData( ):
 
  - Se o somador for menor que 30
 	- Chama a função somar( )
+
+## Função subtraiData( )
+
+Se for o subtraendo for maior que 30
+- enquanto i > 30
+	- reduzir -1 de this.mes a cada 30 dias
+		- se this.mes for menor que 1 deve-se: subtrair -1 ao ano e atribuir 12 ao mes
+	- subtrair -30 de subtraendo a cada repetição
+
+Se for o subtraendo for menor que 30
+
+- se o valor de subtraendo for menor que this.dia
+	- this.dia = this.dia - subtraendo
+	- atribuir o resultado a this.dia 
+
+- se o valor do subtraendo for igual a this.dia
+	- subtrair -1 de this.mes
+	- se this.mes for menor que 1 deve-se: subtrair -1 ao ano e atribuir 12 ao mes
+	- verificar se this.mes é de 30 ou 31 dias
+		- se for de 31 dias: this.dia = 31
+		- se for de 30 dias: this.dia = 30
+
+- se o valor de subtraendo for maior que this.dia
+	- subtrair -1 de this.mes
+	- se this.mes for menor que 1 deve-se: subtrair -1 ao ano e atribuir 12 ao mes
+	- atribuir a result = subtraendo - this.dia
+	- verificar se o mês é de 30 ou 31 dias:
+		- se for 31: 31 - result
+		- se for 30: 30 - result
+	- atribui o resultado a this.dia, this.mes, e this.ano
