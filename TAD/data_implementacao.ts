@@ -10,11 +10,7 @@ class Data{
         this.mes = mes
         this.ano = ano
     }
-    /*  -> A função recebe o objeto dataAtual
-        -> A função se o mês informado está contido no array 30 ou 31 dias
-        -> A função verifica se o número de dias informado corresponde ao tipo de mês
-    */
- 
+
     recebeData_Data(data: Data){
        if(this.mes30dias.includes(data.mes)){
             if(data.dia >= 1 && data.dia <= 30){
@@ -32,9 +28,7 @@ class Data{
             }
        }
     }
-    /*  -> A função passa o valor de this.ano para inteiro
-        -> A função verifica se o valor é divisível por 4, não é divisível por 100 ou é divisível por 400
-    */
+
     calcula_ano_bissexto(){
         let ano = this.ano
         if(ano % 4 === 0 && ano %100 !== 0 || (ano%400 === 0)){
@@ -126,10 +120,10 @@ class Data{
             else if(subtraendo === data.dia){
                 subtrairMesAno()
                 if(this.mes30dias.includes(data.mes)){
-                    this.mes = 30
+                    this.dia = 30
                     console.log('Nova Data: ' + this.dia + '/' + this.mes + '/' + this.ano)
                 } else if(this.mes31dias.includes(data.mes)){
-                    this.mes = 31
+                    this.dia = 31
                     console.log('Nova Data: ' + this.dia + '/' + this.mes + '/' + this.ano)
                 }
             }
@@ -160,6 +154,25 @@ class Data{
 
     }
 
+    retornaData(data: Data){
+        let meses: {[index: number]: string} = {
+            1: 'Janeiro',
+            2: 'Fevereiro',
+            3: 'Março',
+            4: 'Abril',
+            5: 'Maio',
+            6: 'Junho',
+            7: 'Julho',
+            8: 'Agosto',
+            9: 'Setembro',
+            10: 'Outubro',
+            11: 'Novembro',
+            12: 'Dezembro'
+        }
+    
+        console.log(data.dia+' de '+ meses[data.mes]+' de ' + data.ano)
+    }
+
 }
 
 
@@ -169,5 +182,6 @@ let dataAtual = new Data(30,11,2024)
 dataAtual.calcula_ano_bissexto()
 dataAtual.somaData(40, dataAtual)
 dataAtual.recebeData_String('24/05/2024')
-let hoje = new Data(25, 5, 2024)
-hoje.subtraiData(20, hoje)
+let hoje = new Data(25, 1, 2024)
+hoje.subtraiData(25, hoje)
+hoje.retornaData(hoje)

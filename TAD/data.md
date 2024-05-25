@@ -92,3 +92,11 @@ Se for o subtraendo for menor que 30
 		- se for 31: 31 - result
 		- se for 30: 30 - result
 	- atribui o resultado a this.dia, this.mes, e this.ano
+
+## Função imprimeData( )
+
+O objetivo desta função que recebe como parâmetro um objeto do tipo data e retorna ela escrita por extenso
+
+- Criar um dicionário e atribuir as chaves, números dos meses, aos seus respectivos nomes.
+- Acessar o dicionário por meio do data.mes.
+- Imprimir no console a data por extenso
