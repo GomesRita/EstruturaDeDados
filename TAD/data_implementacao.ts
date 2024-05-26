@@ -155,7 +155,7 @@ class Data{
     }
 
     retornaData(data: Data){
-        let meses: {[index: number]: string} = {
+        let meses: {[index: number]: string} = { 
             1: 'Janeiro',
             2: 'Fevereiro',
             3: 'Março',
