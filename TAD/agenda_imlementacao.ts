@@ -2,8 +2,19 @@ import { Pessoa } from "./pessoa";
 class Agenda{
     listaAgenda: Array<Pessoa> = []
     InserirContato(nome: string, endereco: string, telefone: string){
-        var novoContato = new Pessoa(nome, endereco, telefone)
-        this.listaAgenda.push(novoContato);
+        let verificador = false
+        for(var i = 0; i < this.listaAgenda.length; i++ ){
+            if(this.listaAgenda[i].telefone === telefone){
+                console.log("Este contato já existe")
+                verificador = true
+                break;
+            }
+        } 
+        if(!verificador){
+            var novoContato = new Pessoa(nome, endereco, telefone)
+            this.listaAgenda.push(novoContato);
+            console.log('Contato cadastrado com sucesso!!')
+        }
     }
     ConsultarContatos(Nome: string){
         console.log(`Resultado da Busca:\n`)
@@ -24,8 +35,14 @@ class Agenda{
             console.log(`Nome: ${value.nome}   Telefone: ${value.telefone}    Endereço: ${value.endereco}`)
         });
     }
-    ExcluirContato(){
-
+    ExcluirContato(Telefone: string){
+        for(var i = 0; i < this.listaAgenda.length; i++ ){
+            if(this.listaAgenda[i].telefone === Telefone){
+               this.listaAgenda.splice(i, 1)
+               console.log('Contato Excluído com sucesso')
+               break
+            }
+        } 
     }
 }
 
@@ -33,4 +50,5 @@ let agenda = new Agenda()
 agenda.InserirContato('Rita','AAA','9991111222');
 agenda.InserirContato('Maria','A2A','444555888');
 agenda.ExibirContatos();
-agenda.ConsultarContatos('Maria')
+agenda.ExcluirContato('444555888')
+agenda.ExibirContatos();
