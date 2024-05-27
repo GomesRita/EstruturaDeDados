@@ -5,12 +5,14 @@ class Agenda{
         var novoContato = new Pessoa(nome, endereco, telefone)
         this.listaAgenda.push(novoContato);
     }
-    ConsultarContatos(){}
+    ConsultarContatos(){
+
+        
+    }
     ExibirContatos(){
-        /*this.listaAgenda.forEach(function (value: Pessoa){
-            console.log(value.nome)
-        });*/
-    console.log(this.listaAgenda)
+        this.listaAgenda.forEach(function (value: Pessoa){
+            console.log(`Nome: ${value.nome}   Telefone: ${value.telefone}    Endereço: ${value.endereco}`)
+        });
     }
     ExcluirContato(){}
 }
