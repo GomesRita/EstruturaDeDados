@@ -1,27 +1,41 @@
-import { Pessoa } from "./pessoa";
-import { Carro } from "./carro";
+import { Pessoa } from "./ModeloPessoa";
+import { Carro } from "./ModeloCarro";
 
-class Estacionamento{
-    carros: Array<Carro> = []
-    lista: Map<Pessoa[], Carro[]> = new Map();
+export class Estacionamento {
+    lista: Array<Pessoa> = []
+    veiculo: Array<Carro> = []
+    lista_proprietarios: Array<number> = []
+    lista_veiculos: Array<string> = []
 
-    cadastrarRegistro(pessoa: Pessoa, carro: Carro){
-        this.lista.set([pessoa], [carro])
+
+    inserirPessoa(id: number,nome: string, telefone: string){
+            let newProprietario = new Pessoa(id, nome, telefone)
+            this.lista_proprietarios.push(id)
+            this.lista.push(newProprietario)
     }
-    excluirRegistro(pessoa: Pessoa){
-        this.lista.delete([pessoa])
+
+    inserirVeiculo(placa: string, marca: string, modelo: string, cor: string, idProprietario: number){
+        if(this.lista_veiculos.includes(placa)){
+            console.log('Veículo já cadastrado')
+        } else {
+            if(this.lista_proprietarios.includes(idProprietario)){
+                let newVeiculo = new Carro(placa, marca, modelo, cor, idProprietario)
+                this.lista_veiculos.push(placa)
+                this.veiculo.push(newVeiculo)
+            } else {
+                console.log(`Este id ${idProprietario} não está vinculado a nenhum proprietario`)
+            }
+        }
     }
-    RetornaLista(){
+    retornarProprietario(){
+        console.log(this.lista)
+        console.log(this.veiculo)
     }
 }
-let adm = new Estacionamento()
-let carro1 = new Carro('aaaa', 'bbbbb', 'aaaa', 'aaa')
-let carro2 = new Carro('bbbbb', 'cccc', 'ddddd', 'aaaaa')
-let carro3 = new Carro('CCCCC', 'FFFF', 'AAAA', 'VVVV')
-let pessoa1 = new Pessoa('147852369', 'Rita','11111111')
-let pessoa2 = new Pessoa('127312133', 'Maria','2222222')
 
-adm.cadastrarRegistro(pessoa1, carro1)
-adm.cadastrarRegistro(pessoa2, carro2)
-adm.cadastrarRegistro(pessoa2, carro3)
-adm.RetornaLista()
+let estacionamento = new  Estacionamento()
+
+
+
+
+
