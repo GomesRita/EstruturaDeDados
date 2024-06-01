@@ -1,4 +1,4 @@
-import { Pessoa } from "./ModeloPessoa";
+import { Pessoa } from './ModeloPessoa';
 import { Carro } from "./ModeloCarro";
 
 export class Estacionamento {
@@ -27,15 +27,40 @@ export class Estacionamento {
             }
         }
     }
+
     retornarProprietario(){
         console.log(this.lista)
+    }
+    retornaVeiculos(){
         console.log(this.veiculo)
     }
+
+    excluirProprietario(id: number){
+        for(var i = 0; i < this.lista_proprietarios.length ; i++ ){
+                if(this.lista_proprietarios.includes(id) && this.lista[i].retornaId === id){
+                    this.lista_proprietarios.splice(i, 1)
+                    this.lista.splice(i,1)
+                    console.log('Proprietário exclído com sucesso')
+
+                }
+                break;
+            }
+        } 
+
 }
 
+
+
 let estacionamento = new  Estacionamento()
-
-
+estacionamento.inserirPessoa(1, 'Maria', '111111111')
+estacionamento.inserirPessoa(2, 'Rita', '222222222')
+estacionamento.inserirVeiculo('aaa','aaa', 'aaa','aaaa', 1)
+estacionamento.inserirVeiculo('bbbb','bbb', 'bbbb','bbbb', 1)
+estacionamento.retornarProprietario()
+estacionamento.retornaVeiculos()
+estacionamento.excluirProprietario(1)
+estacionamento.retornarProprietario()
+estacionamento.retornaVeiculos()
 
 
 
