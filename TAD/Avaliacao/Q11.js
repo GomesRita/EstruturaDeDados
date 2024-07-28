@@ -113,6 +113,7 @@ class ListaEncadeada{
         anterior.proximo = atual.proximo
         this.tamanho--;
         console.log('Atual: ' + atual.valor + '\n' + 'Anterior: ' + anterior.valor  + '\n' + 'Proximo: ' + atual.proximo.valor)
+        console.log(`LISTA ATUALIZADA APÓS EXLUSÃO DO NÓ ${atual.valor}`)
         this.exibirElementos();
     }
 }
