@@ -53,7 +53,17 @@ class ListaDuplamenteEncadeada{
         }
     } 
 
-    adicionarFinal(){
+    adicionarFinal(valor){
+        let no = new No(valor)
+
+        if(this.tamanho === 0){
+            this.inicio = no
+            this.final = no
+        } else {
+            no.anterior = this.final;
+            this.final.proximo = no;
+            this.final = no;
+        }
 
     }
     
@@ -62,7 +72,16 @@ class ListaDuplamenteEncadeada{
     }
 
     buscarElementos(valor){
-
+        let atual = this.inicio
+        while(atual !== null){
+            if(atual.valor === valor){
+            console.log("\nNó encontrado: " + atual.valor )
+                return true
+            }
+            atual = atual.proximo
+        }
+        console.log('Nó não encontrado')
+        return false
     }
      
     exibirTodosInicio(){
@@ -93,9 +112,11 @@ class ListaDuplamenteEncadeada{
 
 let list = new ListaDuplamenteEncadeada()
 list.adicionarInicio(1)
-//list.adicionarInicio(3)
 list.exibirTodosInicio()
 list.adicionarInicio(2)
-list.exibirTodosInicio()
-list.removerInicio()
+//list.exibirTodosInicio()
+//list.removerInicio()
+//list.exibirTodosInicio()
+list.buscarElementos(1)
+list.adicionarFinal(3)
 list.exibirTodosInicio()
