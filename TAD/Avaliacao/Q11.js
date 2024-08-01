@@ -68,7 +68,13 @@ class ListaDuplamenteEncadeada{
     }
     
     removerFinal(){
-
+        if(this.final !== null){
+            this.final = this.final.anterior;
+            this.final.proximo = null;
+            this.tamanho = this.tamanho - 1
+        } else {
+            console.log('A lista está vazia')
+        }
     }
 
     buscarElementos(valor){
@@ -119,4 +125,6 @@ list.adicionarInicio(2)
 //list.exibirTodosInicio()
 list.buscarElementos(1)
 list.adicionarFinal(3)
-list.exibirTodosInicio()
+list.exibirTodosFinal()
+list.removerFinal()
+list.exibirTodosFinal()
