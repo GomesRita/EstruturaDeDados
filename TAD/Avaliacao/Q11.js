@@ -1,130 +1,101 @@
 /**
-10. Implemente uma classe ListaEncadeada para representar uma lista encadeada
-simples. A classe deve incluir métodos para adicionar elementos ao final da lista,
-remover elementos do início da lista, buscar elementos por valor e exibir todos os
-elementos da lista. Além disso, implemente métodos para inserir elementos em
-posições específicas e remover elementos por valor. Simule a adição, remoção e
-busca de vários elementos, exibindo o estado da lista a cada operação.
+11. Implemente uma classe ListaDuplamenteEncadeada para representar uma lista
+encadeada duplamente ligada. A classe deve incluir métodos para adicionar e
+remover elementos tanto do início quanto do final da lista, buscar elementos por
+valor, exibir todos os elementos da lista em ambas as direções (da cabeça para a
+cauda e vice-versa). Simule a adição, remoção e busca de vários elementos,
+exibindo o estado da lista a cada operação.
  */
 
 class No{
     constructor(valor){
-        this.valor = valor;
+        this.valor = valor
         this.proximo = null
+        this.anterior = null
     }
+
 }
 
-class ListaEncadeada{
+class ListaDuplamenteEncadeada{
+
     constructor(){
-        this.cabeca = null
-        this.tamanho = 0
+        this.inicio = null;
+        this.final =  null;
+        this.tamanho = 0;
     }
 
-    inserirNoInicio(valor){
+    adicionarInicio(valor){
         let no = new No(valor)
-        no.proximo = this.cabeca
-        this.cabeca = no
 
-        this.tamanho++;
-        this.exibirElementos();
-    }
-    inserirNoFinal(valor){
-        let no = new No(valor)
-        if(this.cabeca == null){
-            this.cabeca = no
+        if(this.tamanho === 0){
+            this.inicio = no
+            this.final = no
         } 
-        else{
-            let atual = this.cabeca
-            while(atual.proximo !== null){
-                atual = atual.proximo
-            }
-            atual.proximo = no
-        }
-        this.tamanho++;
-        this.exibirElementos();
+        else {
+            no.proximo = this.inicio;
+            this.inicio.anterior = no;
+            this.inicio = no;
 
-    }
-
-    inserirElementos(valor, posicao){
-        let no = new No(valor)
-        if(posicao > 0 && posicao <= this.tamanho){
-            if(this.cabeca  ===  null || posicao == 1){
-                this.inserirNoInicio(valor)
-            } 
-            if(posicao == this.tamanho){
-                this.inserirNoFinal()
-            }
-            else {
-                let atual = this.cabeca
-                for(let i = 1; i < posicao; i++){
-                    atual = atual.proximo
-                } 
-                no.proximo = atual.proximo;
-                atual.proximo = no
-                this.exibirElementos();
-            }
-        } else {
-            console.log('Informe uma posição válida')
-            return false
         }
+        this.tamanho = this.tamanho+1
+        //this.exibirTodosFinal();
+
     }
 
     removerInicio(){
-        if(this.cabeca === null){
-            return false
-        } else {
-            this.cabeca = this.cabeca.proximo
-            this.tamanho--;
-            console.log("LISTA ATUALIZADA APÓS REMOÇÃO DO NÓ")
-            this.exibirElementos()
+        if(this.inicio !== null){
+            this.inicio = this.inicio.proximo;
+            this.inicio.anterior = null;
+            this.tamanho = this.tamanho - 1
         }
-    }
+        else{
+            console.log("A lista está vazia")
+        }
+    } 
 
-    buscarElementos(busca){
-        let atual = this.cabeca
-        while(atual !== null){
-            if(atual.valor === busca){
-                console.log(` \n Nodo encontrado \n` + atual.valor )
-                return true
-            }
-            atual = atual.proximo
-        }
-        console.log('Nodo não encontrado')
-        return false
+    adicionarFinal(){
+
     }
     
-    exibirElementos(){
-        let atual = this.cabeca
-        console.log("Nodos")
-        while (atual !== null){
-            console.log(atual.valor)
-            atual = atual.proximo
-        }
+    removerFinal(){
+
     }
 
-    excluirPorValor(valor){
-        let atual = this.cabeca
-        let anterior;
+    buscarElementos(valor){
 
-        while(atual !== null && atual.valor !== valor){
-            anterior = atual;
-            atual = atual.proximo;
-        } 
-        anterior.proximo = atual.proximo
-        this.tamanho--;
-        console.log('Atual: ' + atual.valor + '\n' + 'Anterior: ' + anterior.valor  + '\n' + 'Proximo: ' + atual.proximo.valor)
-        console.log(`LISTA ATUALIZADA APÓS EXLUSÃO DO NÓ ${atual.valor}`)
-        this.exibirElementos();
+    }
+     
+    exibirTodosInicio(){
+        let no = this.inicio;
+        
+        console.log("\nLISTA ATUALIZADA INICIO-FINAL")
+        while (no !== null) {
+        const anteriorValor = no.anterior ? no.anterior.valor : 'null';
+        const proximoValor = no.proximo ? no.proximo.valor : 'null';
+
+        console.log(`Anterior: ${anteriorValor} | Valor: ${no.valor} | Próximo: ${proximoValor}`);
+        no = no.proximo;
+    }
+    }
+    exibirTodosFinal(){
+        let no = this.final;
+        
+        console.log("\nLISTA ATUALIZADA FINAL-INICIO")
+        while (no !== null) {
+        const anteriorValor = no.anterior ? no.anterior.valor : 'null';
+        const proximoValor = no.proximo ? no.proximo.valor : 'null';
+
+        console.log(`Próximo: ${proximoValor} | Valor: ${no.valor} | Anterior: ${anteriorValor}`);
+        no = no.anterior;
+    }
     }
 }
 
-const linkedlist = new ListaEncadeada()
-
-linkedlist.inserirNoInicio(1);
-linkedlist.inserirNoInicio('b');
-linkedlist.inserirNoInicio(2);
-linkedlist.inserirNoInicio(3);
-//linkedlist.exibirElementos();
-linkedlist.inserirElementos(5, 2)
-linkedlist.inserirNoFinal("a")
-linkedlist.excluirPorValor(5);
+let list = new ListaDuplamenteEncadeada()
+list.adicionarInicio(1)
+//list.adicionarInicio(3)
+list.exibirTodosInicio()
+list.adicionarInicio(2)
+list.exibirTodosInicio()
+list.removerInicio()
+list.exibirTodosInicio()
