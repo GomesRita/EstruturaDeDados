@@ -124,7 +124,7 @@ linkedlist.inserirNoInicio(1);
 linkedlist.inserirNoInicio('b');
 linkedlist.inserirNoInicio(2);
 linkedlist.inserirNoInicio(3);
-//linkedlist.exibirElementos();
+linkedlist.exibirElementos();
 linkedlist.inserirElementos(5, 2)
 linkedlist.inserirNoFinal("a")
 linkedlist.excluirPorValor(5);
