@@ -104,17 +104,18 @@ class ListaEncadeada{
 
     excluirPorValor(valor){
         let atual = this.cabeca
-        let anterior;
 
-        while(atual !== null && atual.valor !== valor){
-            anterior = atual;
-            atual = atual.proximo;
+        while(atual.proximo.valor !== valor){
+            atual = atual.proximo
         } 
-        anterior.proximo = atual.proximo
-        this.tamanho--;
-        console.log('Atual: ' + atual.valor + '\n' + 'Anterior: ' + anterior.valor  + '\n' + 'Proximo: ' + atual.proximo.valor)
-        console.log(`LISTA ATUALIZADA APÓS EXLUSÃO DO NÓ ${atual.valor}`)
-        this.exibirElementos();
+        if(atual.proximo.valor === valor){
+            atual.proximo = atual.proximo.proximo
+            this.tamanho--;
+            console.log('Atual: ' + atual.valor + '\n' + 'Proximo: ' + atual.proximo.valor)
+            this.exibirElementos();
+        } else{
+            console.log(`Valor ${valor} não encontrado`)
+        }
     }
 }
 
